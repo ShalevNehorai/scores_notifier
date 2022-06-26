@@ -7,15 +7,17 @@ from selenium.common import exceptions as SE
 
 import time
 
+from database_connection import update_coure
+
 PATH = "D:\Program Files (x86)\chromedriver\chromedriver.exe"
 
-def get_scores_from_afeka(user_name, password, email):
+def get_scores_from_afeka(username, password, email):
     driver = webdriver.Chrome(PATH)
 
     driver.get("https://yedion.afeka.ac.il/")
 
-    user_name = driver.find_element(By.ID, "input_1")
-    user_name.send_keys(user_name)
+    user_name_input = driver.find_element(By.ID, "input_1")
+    user_name_input.send_keys(username)
 
     password_input = driver.find_element(By.ID, "input_2")
     password_input.send_keys(password)
@@ -49,8 +51,9 @@ def get_scores_from_afeka(user_name, password, email):
         under_element = curr_element.find_elements(By.XPATH, ".//*")
         course_name = under_element[1].get_attribute('textContent').strip()
         course_type = under_element[3].get_attribute('textContent').strip()
-        score = under_element[6].get_attribute('textContent').strip()
+        score = under_element[6].get_attribute('textContent').strip().split(":")[1].strip()
         print("course: " + course_name + " " + course_type + " score: " + score)
+        update_coure(username, course_name, course_type, score)
 
         counter += 1
         try:
