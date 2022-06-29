@@ -50,10 +50,10 @@ def get_scores_from_afeka(username, password, email):
     while(exist):
         under_element = curr_element.find_elements(By.XPATH, ".//*")
         course_name = under_element[1].get_attribute('textContent').strip()
+        course_nz = under_element[2].get_attribute('textContent').strip()
         course_type = under_element[3].get_attribute('textContent').strip()
         score = under_element[6].get_attribute('textContent').strip().split(":")[1].strip()
-        print("course: " + course_name + " " + course_type + " score: " + score)
-        update_coure(username, course_name, course_type, score)
+        update_coure(username, course_name, course_nz, course_type, score, email)
 
         counter += 1
         try:
