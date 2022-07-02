@@ -4,22 +4,29 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../static/css/styles.css">
     <title>Home</title>
 </head>
 <body>
-    <h1>הירשם כדי להקבל הודעה כשציון מתעדכן</h1>
+    <h1>Sign up to get notified when new grade is uploded</h1>
     {% from "_fromtemlates.html" import render_field %}
     <form method ="POST" action="">
-        <div class = "from-group">
-            {{render_field(form.username, class="from-control")}}
+        <div class = "form-field">
+            {{render_field(form.username, class="field__input")}}
+            <p>The user name you're using to signin to afeka website</p>
         </div>
-        <div class = "from-group">
-            {{render_field(form.password, class="from-control")}}
+        
+        <div class = "form-field">
+            {{render_field(form.password, class="field__input")}}
+            <p>The password you're using to signin to afeka website</p>
         </div>
-        <div class = "from-group">
-            {{render_field(form.email, class="from-control")}}
+
+        <div class = "form-field">
+            {{render_field(form.email, class="field__input")}}
+            <p>Email to send nofication when new grade is uploded</p>
         </div>
-        <p><input type="submit" class="btn btn-primary" value="הירשם"></p>
+
+        <p><input type="submit" class="button-30" value="Register"></p>
     </form>
 </body>
 </html>
