@@ -11,10 +11,22 @@ con_str = os.getenv("DB_LINK")
 mongo_client = pymongo.MongoClient(con_str, connect=False)
 
 users_db = mongo_client.Users
+users_collaction = users_db.Users
 
 def get_all_users():
-    users_collaction = users_db.Users
     return users_collaction.find()
+
+def add_user(username, password, email):
+    user_model={
+        "username": username,
+        "email": email,
+        "password": password,
+        "Active": True
+    }
+    #TODO check if username exists
+
+    users_collaction.insert_one(user_model)
+
 
 def update_coure(user_name, course_name, course_nz, type, score, email):
     course_collaction_name = user_name + "-Curses"
