@@ -11,7 +11,6 @@ users = get_all_users()
 
 for user in users:
     if user["Active"]:
-        print(user["username"])
         password = decrypt(user["password"])
         get_scores_from_afeka(user["username"], password, user["email"])
     with open('timestemps.txt', 'a+') as file:
