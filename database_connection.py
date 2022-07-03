@@ -14,6 +14,14 @@ users_db = mongo_client.Users
 users_collaction = users_db.Users
 
 def get_all_users():
+    #user_model={
+    #    "username": "username",
+    #    "email": "email",
+    #    "password": b'Z0FBQUFBQml3WGFrWFZNdndfYmJHa2M2dUplNVctVVJ6cF9DQngzbFQxN21ZZDR2Q2t5TUVLUi1oV2YyUVBvU2VCdzZpdk1HMnU3...',
+    #    "Active": True
+    #}
+    #return [user_model]
+
     return users_collaction.find()
 
 def add_user(username, password, email):
