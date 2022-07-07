@@ -32,8 +32,8 @@ def get_scores_from_afeka(username, password, email):
         grade_list_btn = WebDriverWait(driver, 5).until(EC.presence_of_element_located((By.LINK_TEXT, "רשימת ציונים")))
         grade_list_btn.click()
 
-    except:
-        log.write_error(e, "the element רשימת ציונים didnt load")
+    except SE.TimeoutException:
+        log.write_log("the element רשימת ציונים didnt load")
         driver.quit()
         return
     
@@ -46,8 +46,8 @@ def get_scores_from_afeka(username, password, email):
         choos_year_ddr.select_by_value('0')
 
         driver.find_element(By.LINK_TEXT, "ביצוע").click()
-    except:
-        log.write_error(e, "the element of year selection didnt load")
+    except SE.TimeoutException:
+        log.write_log("the element of year selection didnt load")
         driver.quit()
         return
 
@@ -58,7 +58,7 @@ def get_scores_from_afeka(username, password, email):
     idStr = "MyFather"
     try:
         curr_element = driver.find_element(By.ID, idStr + str(counter))
-    except SE.NoSuchElement:
+    except SE.NoSuchElementException:
         exist = False
     
     while(exist):
