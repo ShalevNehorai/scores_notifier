@@ -10,16 +10,15 @@ from web_scraping import get_scores_from_afeka
 
 users = get_all_users()
 
-#for user in users:
-user = users[3]
-if user["Active"]:
-    write_timestep_user(user['username'])
-    try:
-        password = decrypt(user["password"])
-    except TypeError as e:
-        write_error(e, "password of user " + user['username'] + " not encrypted correctly")
-        #continue
-    get_scores_from_afeka(user["username"], password, user["email"])
+for user in users:
+    if user["Active"]:
+        write_timestep_user(user['username'])
+        try:
+            password = decrypt(user["password"])
+        except TypeError as e:
+            write_error(e, "password of user " + user['username'] + " not encrypted correctly")
+            continue
+        get_scores_from_afeka(user["username"], password, user["email"])
     
         
 
