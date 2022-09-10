@@ -4,6 +4,8 @@ import smtplib, ssl
 from email.mime.multipart import MIMEMultipart
 from email.mime.text import MIMEText
 
+from log import write_sent_mail
+
 load_dotenv()
 sender = os.getenv("SENDEREMAIL")
 password = os.getenv("EMAILPASSWORD")
@@ -20,7 +22,8 @@ def send_email(email, title, msg):
     server.starttls()
     server.login(sender, password)
     server.sendmail(sender, email, email_string.as_string())
-    print("sending to" , email, "the msg", msg)
+    print("sending to" , email, "the msg", title)
+    write_sent_mail(title)
 
     server.close()
 
