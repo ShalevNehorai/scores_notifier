@@ -54,7 +54,7 @@ def update_coure(user_name, course_name, course_nz, type, score, email):
     if found_course is not None:
         if(score.isnumeric() and found_course["Score"] != score):
             send_new_score(email, course_model)
-        if(not found_course["Score"].isnumeric() or (score.isnumeric() and found_course["Score"].isnumeric)):
+        if((not found_course["Score"].isnumeric()) or (score.isnumeric() and found_course["Score"].isnumeric)):
             courses_collaction.replace_one(found_course, course_model)
     
     else:
