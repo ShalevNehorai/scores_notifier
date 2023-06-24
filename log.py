@@ -17,4 +17,4 @@ def write_sent_mail(title):
     write_log(msg)
 
 def write_error(e : Exception, additional_msg):
-    write_log(str(e.message) + "\n\t" + additional_msg)
+    write_log(str(e) + "\n\t" + additional_msg)

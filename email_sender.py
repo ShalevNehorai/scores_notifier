@@ -28,7 +28,7 @@ def send_email(email, title, msg):
     server.close()
 
 def send_new_score(email, course_model):
-    title = "הקבל ציון חדש ב" + course_model["Type"] +  " בקורס: " + course_model["Name"]
+    title = "ציון חדש ב" + course_model["Type"] +  " בקורס: " + course_model["Name"]
     msg = "בהצלחה במועד ב."
     send_email(email, title, msg)
     

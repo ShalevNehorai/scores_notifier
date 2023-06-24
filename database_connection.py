@@ -52,10 +52,19 @@ def update_coure(user_name, course_name, course_nz, type, score, email):
     }
     
     if found_course is not None:
-        if(score.isnumeric() and found_course["Score"] != score):
-            send_new_score(email, course_model)
-        if((not found_course["Score"].isnumeric()) or (score.isnumeric() and found_course["Score"].isnumeric)):
-            courses_collaction.replace_one(found_course, course_model)
-    
+        if score.isnumeric():
+            course_model["Score"] = [score]
+            scoresLst = found_course['Score']
+            if not isinstance(scoresLst, list):
+                send_new_score(email, course_model)
+                courses_collaction.replace_one(found_course, course_model)
+            elif score not in scoresLst:
+                send_new_score(email, course_model)
+                course_model["Score"].extend(scoresLst)
+                
+                courses_collaction.replace_one(found_course, course_model)
+        
     else:
+        if score.isnumeric():
+            course_model["Score"] = [score]
         courses_collaction.insert_one(course_model)

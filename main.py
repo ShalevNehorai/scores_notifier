@@ -6,7 +6,7 @@ from encryption import decrypt
 from log import write_error, write_timestep_user
 
 from web_scraping import get_scores_from_afeka
-#try:
+
 
 users = get_all_users()
 
